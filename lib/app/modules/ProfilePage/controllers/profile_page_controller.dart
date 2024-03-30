@@ -1,23 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../widget/logOut_Box.dart';
+
 class ProfilePageController extends GetxController {
-  //TODO: Implement ProfilePageController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  //Key
+  final GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
+  //LogOut Dialog Box
+  logOutDialogBox(
+    context,
+  ) {
+    return showDialog(
+      // barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return logOutBox(context);
+      },
+    );
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
