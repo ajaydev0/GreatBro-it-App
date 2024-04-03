@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../modules/CourseDetailsPage/bindings/course_details_page_binding.dart';
 import '../modules/CourseDetailsPage/views/course_details_page_view.dart';
 import '../modules/HomePage/bindings/home_page_binding.dart';
@@ -20,11 +19,10 @@ import '../modules/VideoPage/bindings/video_page_binding.dart';
 import '../modules/VideoPage/views/video_page_view.dart';
 import '../modules/splash_screen/binding/splash_binding.dart';
 import '../modules/splash_screen/view/splash_view.dart';
-
 part 'app_routes.dart';
 
 class AppPages {
-  static const initialPage = Routes.nav_Bar;
+  static const initialPage = Routes.splashScreen;
   static final pages = [
     GetPage(
       name: _Path.splashScreen,
@@ -37,7 +35,7 @@ class AppPages {
       binding: OnboardBinding(),
     ),
     GetPage(
-      name: Routes.HomePage,
+      name: Routes.homePage,
       page: () => const HomePageView(),
       binding: HomePageBinding(),
     ),
@@ -52,27 +50,27 @@ class AppPages {
       binding: CourseDetailsPageBinding(),
     ),
     GetPage(
-      name: Routes.NOTIFICATIONS_PAGE,
+      name: Routes.notification_Page,
       page: () => const NotificationsPageView(),
       binding: NotificationsPageBinding(),
     ),
     GetPage(
-      name: Routes.LOGIN_PAGE,
+      name: Routes.login_Page,
       page: () => const LoginPageView(),
       binding: LoginPageBinding(),
     ),
     GetPage(
-      name: Routes.SIGNUP_PAGE,
+      name: Routes.signUp_Page,
       page: () => const SignupPageView(),
       binding: SignupPageBinding(),
     ),
     GetPage(
-      name: Routes.PROFILE_PAGE,
+      name: Routes.profile_page,
       page: () => const ProfilePageView(),
       binding: ProfilePageBinding(),
     ),
     GetPage(
-      name: Routes.VIDEO_PAGE,
+      name: Routes.video_page,
       page: () => const VideoPageView(),
       binding: VideoPageBinding(),
     ),

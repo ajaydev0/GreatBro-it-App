@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "970352894039",
+    "project_id": "greatbro-it",
+    "storage_bucket": "greatbro-it.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970352894039:android:18bd1c57bcee4f55118312",
+        "android_client_info": {
+          "package_name": "com.example.greatbro_it"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO5Ud_AsLpd0TyT8_KhegJLlgtb54AXQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

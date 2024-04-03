@@ -3,16 +3,17 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greatbro_it/app/const/colors.dart';
+import '../../../widgets/KText.dart';
 import '../controllers/profile_page_controller.dart';
 
 class ProfilePageView extends GetView<ProfilePageController> {
-  const ProfilePageView({Key? key}) : super(key: key);
+  const ProfilePageView({super.key});
   @override
   Widget build(BuildContext context) {
-  var controller =  Get.put(ProfilePageController());
+    var controller = Get.put(ProfilePageController());
     return Scaffold(
       key: controller.globalKey,
-      endDrawer: SafeArea(child: KDrawer(controller,context)),
+      endDrawer: SafeArea(child: KDrawer(controller, context)),
       backgroundColor: Colorsys.lightGrey,
       appBar: AppBar(
         elevation: 0,
@@ -95,19 +96,19 @@ class ProfilePageView extends GetView<ProfilePageController> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    "Ajay Dev",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colorsys.black,
-                        fontWeight: FontWeight.bold),
+                  Ktext(
+                    text: "Ajay Dev",
+                    fontSize: 22,
+                    color: Colorsys.black,
+                    fontWeight: FontWeight.bold,
                   ),
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(
-                    "ajayrebel120@gmail.com",
-                    style: TextStyle(fontSize: 15, color: Colorsys.grey),
+                  Ktext(
+                    text: "ajayrebel120@gmail.com",
+                    fontSize: 14,
+                    color: Colorsys.grey,
                   ),
                   // const SizedBox(
                   //   height: 20,
@@ -151,12 +152,11 @@ class ProfilePageView extends GetView<ProfilePageController> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              "Collotion",
-                              style: TextStyle(
-                                  color: Colorsys.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
+                            Ktext(
+                              text: "Collotion",
+                              color: Colorsys.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
                             ),
                             Container(
                               width: 50,
@@ -171,12 +171,11 @@ class ProfilePageView extends GetView<ProfilePageController> {
                         const SizedBox(
                           width: 20,
                         ),
-                        Text(
-                          "Likes",
-                          style: TextStyle(
-                              color: Colorsys.grey,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15),
+                        Ktext(
+                          text: "Likes",
+                          color: Colorsys.grey,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15,
                         )
                       ],
                     ),
@@ -192,132 +191,121 @@ class ProfilePageView extends GetView<ProfilePageController> {
   }
 
   Widget makeColloction(List collocation) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.only(top: 20),
-            height: 320,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: collocation.length,
-              itemBuilder: (context, index) {
-                return AspectRatio(
-                  aspectRatio: 1.2 / 1,
-                  child: Column(
-                    children: <Widget>[
-                      Expanded(
-                        child: Container(
-                            margin: const EdgeInsets.only(right: 20),
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        collocation[index].thumbnail),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.orange),
-                            child: Stack(
-                                alignment: AlignmentDirectional.bottomCenter,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: BackdropFilter(
-                                      filter: ImageFilter.blur(
-                                          sigmaX: 10, sigmaY: 10),
-                                      child: Container(
-                                          height: 90,
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20),
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(24),
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text(
-                                                collocation[index].name,
-                                                style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 15),
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                collocation[index]
-                                                        .tags
-                                                        .length
-                                                        .toString() +
-                                                    " photos",
-                                                style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.w300),
-                                              )
-                                            ],
-                                          )),
-                                    ),
+    return Column(
+      children: <Widget>[
+        Container(
+          padding: const EdgeInsets.only(top: 20),
+          height: 320,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: collocation.length,
+            itemBuilder: (context, index) {
+              return AspectRatio(
+                aspectRatio: 1.2 / 1,
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                          margin: const EdgeInsets.only(right: 20),
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage(collocation[index].thumbnail),
+                                  fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.orange),
+                          child: Stack(
+                              alignment: AlignmentDirectional.bottomCenter,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: BackdropFilter(
+                                    filter: ImageFilter.blur(
+                                        sigmaX: 10, sigmaY: 10),
+                                    child: Container(
+                                        height: 90,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(24),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Ktext(
+                                              text: collocation[index].name,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15,
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Ktext(
+                                              text:
+                                                  "${collocation[index].tags.length} photos",
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w300,
+                                            )
+                                          ],
+                                        )),
                                   ),
-                                ])),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 32,
-                        margin: const EdgeInsets.only(right: 20),
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: collocation[index].tags.length,
-                          itemBuilder: (context, tagIndex) => Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 5),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colorsys.grey300),
-                            child: Center(
-                              child: Text(
-                                collocation[index].tags[tagIndex],
-                                style: const TextStyle(),
-                              ),
+                                ),
+                              ])),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 32,
+                      margin: const EdgeInsets.only(right: 20),
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: collocation[index].tags.length,
+                        itemBuilder: (context, tagIndex) => Container(
+                          margin: const EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 25, vertical: 5),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colorsys.grey300),
+                          child: Center(
+                            child: Ktext(
+                              text: collocation[index].tags[tagIndex],
                             ),
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                );
-              },
-            ),
-          )
-        ],
-      ),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
+        )
+      ],
     );
   }
 
   Widget makeFollowWidgets({count, name}) {
     return Row(
       children: <Widget>[
-        Text(
-          count.toString(),
-          style: TextStyle(
-              fontSize: 15, fontWeight: FontWeight.bold, color: Colorsys.black),
+        Ktext(
+          text: count.toString(),
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+          color: Colorsys.black,
         ),
         const SizedBox(
           width: 5,
         ),
-        Text(
-          name,
-          style: TextStyle(fontSize: 15, color: Colorsys.darkGray),
-        ),
+        Ktext(text: name, fontSize: 15, color: Colorsys.darkGray),
       ],
     );
   }
@@ -349,11 +337,9 @@ class ProfilePageView extends GetView<ProfilePageController> {
                   elevation: 0,
                   onPressed: () {},
                   color: Kcolor.main,
-                  child: const Text(
-                    "Edit Profile",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                  child: Ktext(
+                    text: "Edit Profile",
+                    color: Colors.white,
                   )),
             ),
             // Expanded(
@@ -379,8 +365,10 @@ class ProfilePageView extends GetView<ProfilePageController> {
   }
 }
 
-KDrawer(  ProfilePageController controller,
-  BuildContext context,) {
+KDrawer(
+  ProfilePageController controller,
+  BuildContext context,
+) {
   return Drawer(
     // width: Kw(value: 70, context: context),
     child: Column(
@@ -405,9 +393,9 @@ KDrawer(  ProfilePageController controller,
                       color: Kcolor.black,
                     ),
                   ),
-                  Text(
-                    "Settings",
-                    style: TextStyle(fontSize: 22),
+                  Ktext(
+                    text: "Settings",
+                    fontSize: 22,
                   ),
                 ],
               ),
@@ -425,7 +413,7 @@ KDrawer(  ProfilePageController controller,
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Card(
             child: ListTile(
-              title: Text("Account Setting"),
+              title: Ktext(text: "Account Setting"),
               leading: CircleAvatar(
                 backgroundColor: Kcolor.main,
                 child: Icon(
@@ -442,7 +430,7 @@ KDrawer(  ProfilePageController controller,
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Card(
             child: ListTile(
-              title: Text("My Order"),
+              title: Ktext(text: "My Order"),
               leading: CircleAvatar(
                 backgroundColor: Kcolor.main,
                 child: Icon(
@@ -459,7 +447,7 @@ KDrawer(  ProfilePageController controller,
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Card(
             child: ExpansionTile(
-              title: Text("Appearance"),
+              title: Ktext(text: "Appearance"),
               leading: CircleAvatar(
                 backgroundColor: Kcolor.main,
                 child: Icon(
@@ -502,7 +490,7 @@ KDrawer(  ProfilePageController controller,
                           const SizedBox(
                             height: 5,
                           ),
-                          const Text("Light"),
+                          Ktext(text: "Light"),
                         ],
                       ),
                       Column(
@@ -533,7 +521,7 @@ KDrawer(  ProfilePageController controller,
                           const SizedBox(
                             height: 5,
                           ),
-                          const Text("Dark"),
+                          Ktext(text: "Dark"),
                         ],
                       ),
                       Column(
@@ -558,7 +546,7 @@ KDrawer(  ProfilePageController controller,
                           const SizedBox(
                             height: 5,
                           ),
-                          const Text("System"),
+                          Ktext(text: "System"),
                         ],
                       ),
                     ],
@@ -572,7 +560,7 @@ KDrawer(  ProfilePageController controller,
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Card(
             child: ListTile(
-              title: Text("Chat with Us"),
+              title: Ktext(text: "Chat with Us"),
               // subtitle: Text("Feel Free to Contact Us"),
               leading: CircleAvatar(
                 backgroundColor: Kcolor.main,
@@ -591,7 +579,7 @@ KDrawer(  ProfilePageController controller,
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Card(
             child: ListTile(
-              title: Text("Help Center"),
+              title: Ktext(text: "Help Center"),
               leading: CircleAvatar(
                 backgroundColor: Kcolor.main,
                 child: Icon(
@@ -616,8 +604,8 @@ KDrawer(  ProfilePageController controller,
         Card(
           color: Colors.white,
           child: ListTile(
-            title: const Text(
-              "Log Out",
+            title: Ktext(
+              text: "Log Out",
             ),
             leading: CircleAvatar(
               backgroundColor: Kcolor.main,
@@ -632,8 +620,7 @@ KDrawer(  ProfilePageController controller,
               color: Kcolor.grey,
             ),
             onTap: () {
-             controller.logOutDialogBox(context);
-
+              controller.logOutDialogBox(context);
             },
           ),
         ),

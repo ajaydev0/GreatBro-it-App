@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../const/colors.dart';
+import '../../../widgets/KText.dart';
 import '../controllers/notifications_page_controller.dart';
 
 class NotificationsPageView extends GetView<NotificationsPageController> {
@@ -22,12 +23,11 @@ class NotificationsPageView extends GetView<NotificationsPageController> {
                 color: Colors.white,
               )),
         ),
-        title: Text(
-          "Notifications",
-          style: TextStyle(
-              color: Colors.white.withOpacity(.8),
-              fontSize: 25,
-              fontWeight: FontWeight.bold),
+        title: Ktext(
+          text: "Notifications",
+          color: Colors.white.withOpacity(.9),
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
         ),
         centerTitle: true,
       ),
@@ -61,16 +61,15 @@ class NotificationsPageView extends GetView<NotificationsPageController> {
               child: SingleChildScrollView(
             child: Column(
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(left: 20, top: 15, bottom: 0),
                   child: Row(
                     children: [
-                      Text(
-                        "New",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
+                      Ktext(
+                        text: "New",
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
                       ),
                     ],
                   ),
@@ -145,7 +144,7 @@ class NotificationsPageView extends GetView<NotificationsPageController> {
                   ],
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 15, top: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,33 +152,34 @@ class NotificationsPageView extends GetView<NotificationsPageController> {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          "Ajay Dev",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15),
+                        Ktext(
+                          text: "Ajay Dev",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
                         ),
-                        Text(
-                          " also commented on",
-                          style: TextStyle(fontSize: 15),
+                        Ktext(
+                          text: " also commented on",
+                          fontSize: 15,
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        Text(
-                          "Raju Raj",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15),
+                        Ktext(
+                          text: "Raju Raj",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
                         ),
-                        Text(
-                          "'s photo,",
-                          style: TextStyle(fontSize: 15),
+                        Ktext(
+                          text: "'s photo,",
+                          fontSize: 15,
                         ),
                       ],
                     ),
-                    Text(
-                      "30 minutes ago",
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                    Ktext(
+                      text: "30 minutes ago",
+                      color: Colors.grey,
+                      fontSize: 12,
                     ),
                   ],
                 ),
@@ -240,7 +240,7 @@ class NotificationsPageView extends GetView<NotificationsPageController> {
                   ],
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 15, top: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -248,33 +248,34 @@ class NotificationsPageView extends GetView<NotificationsPageController> {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          "Lima Dash",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15),
+                        Ktext(
+                          text: "Lima Dash",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
                         ),
-                        Text(
-                          " reacted on ",
-                          style: TextStyle(fontSize: 15),
+                        Ktext(
+                          text: " reacted on ",
+                          fontSize: 15,
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        Text(
-                          "Ajay Dev",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15),
+                        Ktext(
+                          text: "Ajay Dev",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
                         ),
-                        Text(
-                          "'s photo,",
-                          style: TextStyle(fontSize: 15),
+                        Ktext(
+                          text: "'s photo,",
+                          fontSize: 15,
                         ),
                       ],
                     ),
-                    Text(
-                      "30 minutes ago",
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                    Ktext(
+                      text: "30 minutes ago",
+                      color: Colors.grey,
+                      fontSize: 12,
                     ),
                   ],
                 ),
@@ -335,7 +336,7 @@ class NotificationsPageView extends GetView<NotificationsPageController> {
                   ],
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 15, top: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -343,33 +344,34 @@ class NotificationsPageView extends GetView<NotificationsPageController> {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          "Abdullah Minhaj",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
+                        Ktext(
+                          text: "Abdullah Minhaj",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
                         ),
-                        Text(
-                          " reacted on ",
-                          style: TextStyle(fontSize: 16),
+                        Ktext(
+                          text: " reacted on ",
+                          fontSize: 16,
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        Text(
-                          "Ajay Dev",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
+                        Ktext(
+                          text: "Ajay Dev",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
                         ),
-                        Text(
-                          "'s photo,",
-                          style: TextStyle(fontSize: 16),
+                        Ktext(
+                          text: "'s photo,",
+                          fontSize: 16,
                         ),
                       ],
                     ),
-                    Text(
-                      "30 minutes ago",
-                      style: TextStyle(color: Colors.grey, fontSize: 14),
+                    Ktext(
+                      text: "30 minutes ago",
+                      color: Colors.grey,
+                      fontSize: 14,
                     ),
                   ],
                 ),

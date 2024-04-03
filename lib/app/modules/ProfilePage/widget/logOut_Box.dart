@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greatbro_it/app/const/colors.dart';
 import '../../../router/app_pages.dart';
+import '../../../widgets/KText.dart';
 
 Dialog logOutBox(BuildContext context) {
   return Dialog(
@@ -14,11 +15,12 @@ Dialog logOutBox(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Log Out ",
-            style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+          Ktext(
+            text: "Log Out ",
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
           ),
-          const Text("Are you sure want to log out ?"),
+          Ktext(text: "Are you sure want to log out ?"),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -34,13 +36,13 @@ Dialog logOutBox(BuildContext context) {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "No",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.white),
+                        Ktext(
+                          text: "No",
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ],
                     )),
@@ -54,15 +56,15 @@ Dialog logOutBox(BuildContext context) {
                     ),
                     onPressed: () {
                       // box.value.erase();
-                      Get.offAllNamed(Routes.LOGIN_PAGE);
+                      Get.offAllNamed(Routes.login_Page);
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Yes",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.white),
+                        Ktext(
+                          text: "Yes",
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ],
                     )),

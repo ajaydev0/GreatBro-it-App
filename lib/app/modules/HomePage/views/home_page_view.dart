@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greatbro_it/app/const/colors.dart';
 import 'package:greatbro_it/app/router/app_pages.dart';
+import 'package:greatbro_it/app/widgets/KText.dart';
 import 'package:greatbro_it/main.dart';
 import '../controllers/home_page_controller.dart';
 
 class HomePageView extends GetView<HomePageController> {
-  const HomePageView({Key? key}) : super(key: key);
+  const HomePageView({super.key});
   @override
   Widget build(BuildContext context) {
     Get.put(HomePageController());
@@ -17,22 +18,26 @@ class HomePageView extends GetView<HomePageController> {
         backgroundColor: Kcolor.white,
         leading: Padding(
           padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
-          child: Container(
-            alignment: Alignment.center,
-            height: 38,
-            width: 38,
-            decoration: BoxDecoration(
-                image: const DecorationImage(
-                  image: AssetImage("assets/admin.jpg"),
-                  fit: BoxFit.cover,
-                ),
-                color: Colors.grey,
-                borderRadius: BorderRadius.circular(50)),
+          child: Material(
+            borderRadius: BorderRadius.circular(50),
+            elevation: 3,
+            child: Container(
+              alignment: Alignment.center,
+              height: 38,
+              width: 38,
+              decoration: BoxDecoration(
+                  image: const DecorationImage(
+                    image: AssetImage("assets/admin.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(50)),
+            ),
           ),
         ),
-        title: const Text(
-          "Hi, Ajay",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+        title: Ktext(
+          text: "Hi, Ajay",
+          fontSize: 15,
         ),
         actions: [
           Padding(
@@ -42,7 +47,7 @@ class HomePageView extends GetView<HomePageController> {
               borderRadius: BorderRadius.circular(20),
               child: GestureDetector(
                 onTap: () {
-                  Get.toNamed(Routes.NOTIFICATIONS_PAGE);
+                  Get.toNamed(Routes.notification_Page);
                 },
                 child: Container(
                   height: 35,
@@ -63,7 +68,7 @@ class HomePageView extends GetView<HomePageController> {
           ),
         ],
       ),
-      body: SingleChildScrollView( 
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 0, right: 0, top: 10),
           child: Column(
@@ -103,7 +108,7 @@ class HomePageView extends GetView<HomePageController> {
               //               ),
               //             ],
               //           ),
-      
+
               //           // IconButton(
               //           //     onPressed: () {},
               //           //     icon: Icon(
@@ -139,16 +144,17 @@ class HomePageView extends GetView<HomePageController> {
               //     ],
               //   ),
               // ),
-      
+
               // Text(
               //   "Find your next trip",
               //   style: TextStyle(fontSize: 13),
               // ),
-              const Padding(
-                padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-                child: Text(
-                  "What do you want to learn today?",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                child: Ktext(
+                  text: "What do you want to learn today?",
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
@@ -159,7 +165,7 @@ class HomePageView extends GetView<HomePageController> {
                 children: [
                   Material(
                     borderRadius: BorderRadius.circular(15),
-                    elevation: 5,
+                    elevation: 3,
                     child: Container(
                         height: 50,
                         width: size.width * .90,
@@ -179,7 +185,7 @@ class HomePageView extends GetView<HomePageController> {
                                 padding: const EdgeInsets.all(5),
                                 child: Image.asset(
                                   "assets/icons/search.png",
-                                  color: Colors.grey[600],
+                                  color: Colors.grey[500],
                                 ),
                               ),
                             ),
@@ -189,7 +195,8 @@ class HomePageView extends GetView<HomePageController> {
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Search Course...",
-                                  hintStyle: TextStyle(color: Colors.grey)),
+                                  hintStyle: TextStyle(
+                                      color: Colors.grey, fontFamily: "Aleo")),
                             )),
                             Container(
                               height: size.height * .05,
@@ -238,19 +245,18 @@ class HomePageView extends GetView<HomePageController> {
                               SizedBox(
                                   width: size.width * .415,
                                   // width: 150,
-                                  child: Text(
-                                    "Share With Your Friend And Discount",
-                                    style: TextStyle(
-                                        fontSize: 12, color: Kcolor.white),
+                                  child: Ktext(
+                                    text: "Share With Your Friend And Discount",
+                                    fontSize: 12,
+                                    color: Kcolor.white,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                   )),
-                              Text(
-                                "75%",
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    color: Kcolor.white,
-                                    fontWeight: FontWeight.bold),
+                              Ktext(
+                                text: "75%",
+                                fontSize: 25,
+                                color: Kcolor.white,
+                                fontWeight: FontWeight.bold,
                               )
                             ],
                           ),
@@ -293,16 +299,14 @@ class HomePageView extends GetView<HomePageController> {
                                       : Kcolor.white,
                                   borderRadius: BorderRadius.circular(15)),
                               child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15, right: 15),
-                                child: Text(
-                                  "UI/UX",
-                                  style: TextStyle(
-                                    color: controller.currentCourse.value == 0
-                                        ? Kcolor.white
-                                        : Kcolor.grey500,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: Ktext(
+                                  text: "UI/UX",
+                                  color: controller.currentCourse.value == 0
+                                      ? Kcolor.white
+                                      : Kcolor.grey500,
+                                  // fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
@@ -324,16 +328,14 @@ class HomePageView extends GetView<HomePageController> {
                                       : Kcolor.white,
                                   borderRadius: BorderRadius.circular(15)),
                               child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15, right: 15),
-                                child: Text(
-                                  "Graphics Design",
-                                  style: TextStyle(
-                                      color:
-                                          controller.currentCourse.value == 1
-                                              ? Kcolor.white
-                                              : Kcolor.grey500,
-                                      fontWeight: FontWeight.bold),
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: Ktext(
+                                  text: "Graphics Design",
+                                  color: controller.currentCourse.value == 1
+                                      ? Kcolor.white
+                                      : Kcolor.grey500,
+                                  // fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
@@ -355,16 +357,14 @@ class HomePageView extends GetView<HomePageController> {
                                       : Kcolor.white,
                                   borderRadius: BorderRadius.circular(15)),
                               child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15, right: 15),
-                                child: Text(
-                                  "Digital Marketing",
-                                  style: TextStyle(
-                                      color:
-                                          controller.currentCourse.value == 2
-                                              ? Kcolor.white
-                                              : Kcolor.grey500,
-                                      fontWeight: FontWeight.bold),
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: Ktext(
+                                  text: "Digital Marketing",
+                                  color: controller.currentCourse.value == 2
+                                      ? Kcolor.white
+                                      : Kcolor.grey500,
+                                  // fontWeight: FontWeight.bold
                                 ),
                               ),
                             ),
@@ -386,16 +386,14 @@ class HomePageView extends GetView<HomePageController> {
                                       : Kcolor.white,
                                   borderRadius: BorderRadius.circular(15)),
                               child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15, right: 15),
-                                child: Text(
-                                  "App Development",
-                                  style: TextStyle(
-                                      color:
-                                          controller.currentCourse.value == 3
-                                              ? Kcolor.white
-                                              : Kcolor.grey500,
-                                      fontWeight: FontWeight.bold),
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: Ktext(
+                                  text: "App Development",
+                                  color: controller.currentCourse.value == 3
+                                      ? Kcolor.white
+                                      : Kcolor.grey500,
+                                  // fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
@@ -439,9 +437,13 @@ class HomePageView extends GetView<HomePageController> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     // SizedBox(height: 125),
-                                    Image.asset(
-                                      data[index].url,
-                                      height: 120,
+                                    Hero(
+                                      transitionOnUserGestures: true,
+                                      tag: data[index].title,
+                                      child: Image.asset(
+                                        data[index].url,
+                                        height: 120,
+                                      ),
                                     ),
                                     Row(
                                       children: [
@@ -450,22 +452,20 @@ class HomePageView extends GetView<HomePageController> {
                                           size: 13,
                                           color: Kcolor.grey500,
                                         ),
-                                        Text(
-                                          " ${data[index].lesson} Lesson",
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Kcolor.grey500),
+                                        Ktext(
+                                          text: " ${data[index].lesson} Lesson",
+                                          fontSize: 10,
+                                          color: Kcolor.grey500,
                                         ),
                                       ],
                                     ),
                                     // SizedBox(height: 3),
                                     Row(
                                       children: [
-                                        Text(
-                                          data[index].title,
-                                          style: const TextStyle(
-                                              fontSize: 16.8,
-                                              fontWeight: FontWeight.bold),
+                                        Ktext(
+                                          text: data[index].title,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ],
                                     ),
@@ -474,12 +474,11 @@ class HomePageView extends GetView<HomePageController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          "\$${data[index].price}",
-                                          style: TextStyle(
-                                              color: Colors.amber[700],
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
+                                        Ktext(
+                                          text: "\$${data[index].price}",
+                                          color: Colors.amber[700],
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                         Image.asset(
                                           "assets/icons/love.png",

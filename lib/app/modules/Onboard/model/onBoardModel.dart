@@ -16,16 +16,16 @@ List onBoardList = [
       imageUrl: "assets/onboard/2.jpg",
       title: "Learn Web Development",
       description:
-          "Our mission is to foster equity improvements in learning and enrichment for young people, and in the arts for everyone.​"),
+          "Welcome to our School Management App. Our App is very Userfriendly.Hope u like it."),
   
   OnBoardDataModel(
       imageUrl: "assets/onboard/3.jpg",
         title: "Learn Grahics Design",
       description:
-          "Our mission is to foster equity improvements in learning and enrichment for young people, and in the arts for everyone.​ "),
+          "Welcome to our School Management App. Our App is very Userfriendly.Hope u like it."),
     OnBoardDataModel(
       imageUrl: "assets/onboard/4.jpg",
        title: "Learn App Development",
       description:
-          "Our mission is to foster equity improvements in learning and enrichment for young people, and in the arts for everyone.​ "),
+          "Welcome to our School Management App. Our App is very Userfriendly.Hope u like it."),
 ];

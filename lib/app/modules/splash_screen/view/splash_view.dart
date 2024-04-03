@@ -11,32 +11,30 @@ class SplashView extends GetView<SplashController> {
     // size = MediaQuery.of(context).size;
     Get.put(SplashController());
 
-    return SafeArea(
-      child: Scaffold(
-        
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                 Image.asset("assets/logo.png",height: 160,),
-                  // Container(
-                  //   width: 140,
-                  //   height: 110,
-                  //   decoration: const BoxDecoration(
-                  //       image: DecorationImage(
-                  //           image: AssetImage("assets/logo.png"))),
-                  // ),
-                ],
-              ),
-              // const SizedBox(height: 5),
-              // const CupertinoActivityIndicator(),
-              // CircularProgressIndicator(),
-              // LinearProgressIndicator(),
-            ],
-          ),
+    return Scaffold(
+      
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+               Image.asset("assets/logo.png",height: 100,),
+                // Container(
+                //   width: 140,
+                //   height: 110,
+                //   decoration: const BoxDecoration(
+                //       image: DecorationImage(
+                //           image: AssetImage("assets/logo.png"))),
+                // ),
+              ],
+            ),
+            // const SizedBox(height: 5),
+            // const CupertinoActivityIndicator(),
+            // CircularProgressIndicator(),
+            // LinearProgressIndicator(),
+          ],
         ),
       ),
     );

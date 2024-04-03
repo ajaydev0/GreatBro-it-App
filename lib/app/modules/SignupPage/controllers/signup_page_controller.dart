@@ -1,14 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../router/app_pages.dart';
+
 class SignupPageController extends GetxController {
+  // @override
+  // void onInit() {
+
+  //   super.onInit();
+  // }
+
+  RxBool isLoading = false.obs;
   RxBool isVisible = false.obs;
   RxBool isPasswordEightCharacters = false.obs;
   RxBool hasPasswordOneNumber = false.obs;
   late final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  late Rx<TextEditingController> name = TextEditingController().obs;
-  late Rx<TextEditingController> email = TextEditingController().obs;
-  late Rx<TextEditingController> pass = TextEditingController().obs;
+  late TextEditingController name = TextEditingController();
+  late TextEditingController email = TextEditingController();
+  late TextEditingController pass = TextEditingController();
 
   // Validate Name TextFormFeild
   validateName(value) {
@@ -59,9 +70,28 @@ class SignupPageController extends GetxController {
     if (numericRegex.hasMatch(password)) hasPasswordOneNumber.value = true;
   }
 
-  onClickCreateAccount(controller) {
-    if (controller.formKey.currentState!.validate()) {
-      print("Validation Complete");
+  onClickCreateAccount() async {
+    if (formKey.currentState!.validate()) {
+      try {
+        isLoading.value = true;
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: email.text, password: pass.text);
+        if (userCredential.user != null) {
+          Get.offAllNamed(Routes.login_Page);
+          Get.snackbar("Success", "User Added SuccessFul",
+              backgroundColor: Colors.black.withOpacity(.1));
+        }
+        // isLoading.value = false;
+      } on FirebaseAuthException catch (e) {
+        if (kDebugMode) {
+          print(e);
+        }
+        Get.snackbar(
+            "Error", "User already have an Account ! \nTry another Email",
+            backgroundColor: Colors.black.withOpacity(.1));
+        isLoading.value = false;
+      }
     }
   }
 }
