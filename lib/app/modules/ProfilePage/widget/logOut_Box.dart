@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:greatbro_it/app/const/colors.dart';
 import '../../../router/app_pages.dart';
 import '../../../widgets/KText.dart';
+import '../controllers/profile_page_controller.dart';
 
 Dialog logOutBox(BuildContext context) {
   return Dialog(
@@ -55,8 +56,8 @@ Dialog logOutBox(BuildContext context) {
                       backgroundColor: Kcolor.main,
                     ),
                     onPressed: () {
-                      // box.value.erase();
-                      Get.offAllNamed(Routes.login_Page);
+                      var controller = Get.find<ProfilePageController>();
+                      controller.logout();
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

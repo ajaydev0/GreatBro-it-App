@@ -34,7 +34,7 @@ class SignupPageController extends GetxController {
     if (value == null || value.trim().isEmpty) {
       return " Required";
     }
-    if (!value.trim().contains("@") || !value.trim().contains(".com")) {
+    if (!value.trim().contains("@gmail.com") && !value.trim().contains("@yahoo.com")) {
       return "Email is not valid";
     }
     // if (!value.trim().contains("@gmail.com")) {
@@ -76,7 +76,7 @@ class SignupPageController extends GetxController {
         isLoading.value = true;
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-                email: email.text, password: pass.text);
+                email: email.text, password: pass.text,);
         if (userCredential.user != null) {
           Get.offAllNamed(Routes.login_Page);
           Get.snackbar("Success", "User Added SuccessFul",

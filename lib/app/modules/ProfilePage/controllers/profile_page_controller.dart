@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../../router/app_pages.dart';
 import '../widget/logOut_Box.dart';
 
 class ProfilePageController extends GetxController {
@@ -19,4 +23,9 @@ class ProfilePageController extends GetxController {
     );
   }
 
+  logout() async {
+    await GoogleSignIn().signOut();
+    await FirebaseAuth.instance.signOut();
+    Get.offAllNamed(Routes.login_Page);
+  }
 }

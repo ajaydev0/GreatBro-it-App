@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greatbro_it/app/const/colors.dart';
@@ -10,6 +11,7 @@ class ProfilePageView extends GetView<ProfilePageController> {
   const ProfilePageView({super.key});
   @override
   Widget build(BuildContext context) {
+   var user = FirebaseAuth.instance.currentUser;
     var controller = Get.put(ProfilePageController());
     return Scaffold(
       key: controller.globalKey,
@@ -97,7 +99,7 @@ class ProfilePageView extends GetView<ProfilePageController> {
                     height: 20,
                   ),
                   Ktext(
-                    text: "Ajay Dev",
+                    text: user!.displayName ?? "Null Name",
                     fontSize: 22,
                     color: Colorsys.black,
                     fontWeight: FontWeight.bold,
@@ -106,7 +108,7 @@ class ProfilePageView extends GetView<ProfilePageController> {
                     height: 5,
                   ),
                   Ktext(
-                    text: "ajayrebel120@gmail.com",
+                    text: user.email,
                     fontSize: 14,
                     color: Colorsys.grey,
                   ),

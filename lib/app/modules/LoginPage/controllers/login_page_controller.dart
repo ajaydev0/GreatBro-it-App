@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import '../../../router/app_pages.dart';
 
 class LoginPageController extends GetxController {
@@ -48,7 +49,7 @@ class LoginPageController extends GetxController {
 
     return null;
   }
-
+  //Validate leanth or number
   onPasswordChanged(String password) {
     final numericRegex = RegExp(r'[0-9]');
 
@@ -59,46 +60,77 @@ class LoginPageController extends GetxController {
     if (numericRegex.hasMatch(password)) hasPasswordOneNumber.value = true;
   }
 
-  onClickLogIn() async {
+  Future<dynamic> onClickLogIn() async {
+    var conectivityResult = await (Connectivity().checkConnectivity());
+
     if (formKey.currentState!.validate()) {
-      try {
-        isLoading.value = true;
-        UserCredential userCredential = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: email.text, password: pass.text);
-        if (userCredential.user != null) {
-          Get.offAllNamed(Routes.nav_Bar);
-        }
-        isLoading.value = false;
-      } on FirebaseAuthException catch (e) {
-        if (kDebugMode) {
-          print(e);
-        }
-        Get.snackbar("Error", "User Not Found",
+      if (conectivityResult == ConnectivityResult.mobile || conectivityResult == ConnectivityResult.wifi) {
+        try {
+      isLoading.value = true;
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email.text, password: pass.text);
+      if (userCredential.user != null) {
+        Get.offAllNamed(Routes.nav_Bar);
+      }
+      isLoading.value = false;
+    } on FirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      Get.snackbar("Error", "User Not Found",
+          backgroundColor: Colors.black.withOpacity(.1));
+      isLoading.value = false;
+    }
+      } else {
+        print("No Internet Connected");
+        Get.snackbar("Error", "No Internet Connected",
             backgroundColor: Colors.black.withOpacity(.1));
-        isLoading.value = false;
+        return null;
       }
     }
   }
 
-  signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // if (googleUser == null) {
-    //   throw const NoGoogleAccountChosenException();
-    // }
+  Future<dynamic> signInWithGoogle() async {
+     var conectivityResult = await (Connectivity().checkConnectivity());
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+    if (formKey.currentState!.validate()) {
+      if (conectivityResult == ConnectivityResult.mobile || conectivityResult == ConnectivityResult.wifi) {
+       try {
+      isLoading.value = true;
+      // Create Instance
+      FirebaseAuth auth = FirebaseAuth.instance;
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      //
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+      //
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
+      //Create New Credentials
+      final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+      // signin user with credentials
+      final UserCredential userCredential =
+          await auth.signInWithCredential(credential);
+      Get.toNamed(Routes.nav_Bar);
+      isLoading.value = false;
+    } on FirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      Get.snackbar("Error", "Something Wrong",
+          backgroundColor: Colors.black.withOpacity(.1));
+      isLoading.value = false;
+    }
+      } else {
+        print("No Internet Connected");
+        Get.snackbar("Error", "No Internet Connected",
+            backgroundColor: Colors.black.withOpacity(.1));
+        return null;
+      }
+    }
+ 
 
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+   
   }
 }

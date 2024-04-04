@@ -22,7 +22,7 @@ import '../modules/splash_screen/view/splash_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  static const initialPage = Routes.splashScreen;
+  static const initialPage = Routes.login_Page;
   static final pages = [
     GetPage(
       name: _Path.splashScreen,
