@@ -43,11 +43,10 @@ class OnboardView extends GetView<OnboardController> {
                             curve: Curves.linear);
                       },
                       child: Ktext(
-                    text:     "Skip",
-                    
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Kcolor.black,
+                        text: "Skip",
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Kcolor.black,
                       )),
             ],
           ),
@@ -58,7 +57,7 @@ class OnboardView extends GetView<OnboardController> {
           children: [
             const SizedBox(height: 130),
             SizedBox(
-              height: appHeight *68,
+              height: appHeight * 68,
               // height: 530,
               // color: Colors.red,
               child: PageView.builder(
@@ -79,14 +78,17 @@ class OnboardView extends GetView<OnboardController> {
                                 image: AssetImage(data.imageUrl))),
                       ),
                       Ktext(
-                       text:  data.title,
-                   
-                            fontSize: 20, fontWeight: FontWeight.bold,
+                        text: data.title,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                       Padding(
                           padding: const EdgeInsets.only(
                               left: 30, right: 30, top: 10),
-                          child: Ktext( text:  data.description,fontSize: 13,color: Colors.grey[500])),
+                          child: Ktext(
+                              text: data.description,
+                              fontSize: 13,
+                              color: Colors.grey[500])),
                     ],
                   );
                 },
@@ -104,12 +106,11 @@ class OnboardView extends GetView<OnboardController> {
                                 MaterialStateProperty.all(Colors.white),
                           ),
                           onPressed: () {},
-                          child:  Ktext(
-                           text:  "",
-                            
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                          child: Ktext(
+                            text: "",
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ))
                       : TextButton(
                           style: ButtonStyle(
@@ -122,11 +123,10 @@ class OnboardView extends GetView<OnboardController> {
                                 curve: Curves.linear);
                           },
                           child: Ktext(
-                         text:    "Back",
-                        
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Kcolor.black,
+                            text: "Back",
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Kcolor.black,
                           )),
                   Row(
                     children: [
@@ -173,9 +173,9 @@ class OnboardView extends GetView<OnboardController> {
                   ),
                   controller.selectedIndex.value == 3
                       ? TextButton(
-                        
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Kcolor.main),
+                            backgroundColor:
+                                MaterialStateProperty.all(Kcolor.main),
                             overlayColor:
                                 MaterialStateProperty.all(Kcolor.main),
                           ),
@@ -183,11 +183,10 @@ class OnboardView extends GetView<OnboardController> {
                             Get.toNamed(Routes.login_Page);
                           },
                           child: Ktext(
-                          text:   "Start",
-                         
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Kcolor.white.withOpacity(.9),
+                            text: "Start",
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Kcolor.white.withOpacity(.9),
                           ))
                       : TextButton(
                           style: ButtonStyle(
@@ -200,11 +199,10 @@ class OnboardView extends GetView<OnboardController> {
                                 curve: Curves.linear);
                           },
                           child: Ktext(
-                         text:    "Next",
-                         
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Kcolor.black,
+                            text: "Next",
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Kcolor.black,
                           )),
                 ],
               ),

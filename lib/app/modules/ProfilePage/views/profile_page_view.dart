@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greatbro_it/app/const/colors.dart';
@@ -11,7 +12,7 @@ class ProfilePageView extends GetView<ProfilePageController> {
   const ProfilePageView({super.key});
   @override
   Widget build(BuildContext context) {
-   var user = FirebaseAuth.instance.currentUser;
+    var user = FirebaseAuth.instance.currentUser;
     var controller = Get.put(ProfilePageController());
     return Scaffold(
       key: controller.globalKey,
@@ -20,6 +21,7 @@ class ProfilePageView extends GetView<ProfilePageController> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
+
         // leading: BackButton(
         //   onPressed: () {
         //     Navigator.pop(context);
@@ -56,50 +58,49 @@ class ProfilePageView extends GetView<ProfilePageController> {
                     transitionOnUserGestures: true,
                     tag: "ajay",
                     child: Container(
-                      padding: const EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Kcolor.main,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.shade300,
-                                blurRadius: 20,
-                                offset: const Offset(0, 10))
-                          ]),
-                      child: CircleAvatar(
-                        backgroundImage: const AssetImage("assets/admin.jpg"),
-                        maxRadius: 40,
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: Container(
-                            padding: const EdgeInsets.all(2),
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: Kcolor.main,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.shade300,
+                                  blurRadius: 20,
+                                  offset: const Offset(0, 10))
+                            ]),
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(user?.photoURL ?? ""),
+                          maxRadius: 40,
+                          child: Align(
+                            alignment: Alignment.bottomRight,
                             child: Container(
-                                alignment: Alignment.center,
-                                height: 15,
-                                width: 20,
-                                decoration: BoxDecoration(
-                                  color: Kcolor.main,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(
-                                  Icons.edit,
-                                  size: 12,
-                                  color: Colors.white,
-                                )),
+                              padding: const EdgeInsets.all(2),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                              ),
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  height: 15,
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                    color: Kcolor.main,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.edit,
+                                    size: 12,
+                                    color: Colors.white,
+                                  )),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
+                        )),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   Ktext(
-                    text: user!.displayName ?? "Null Name",
+                    text: user?.displayName ?? "Null Name",
                     fontSize: 22,
                     color: Colorsys.black,
                     fontWeight: FontWeight.bold,
@@ -108,207 +109,86 @@ class ProfilePageView extends GetView<ProfilePageController> {
                     height: 5,
                   ),
                   Ktext(
-                    text: user.email,
+                    text: user?.email,
                     fontSize: 14,
                     color: Colorsys.grey,
                   ),
-                  // const SizedBox(
-                  //   height: 20,
-                  // ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: <Widget>[
-                  //     makeFollowWidgets(count: 400, name: "Followers"),
-                  //     Container(
-                  //       width: 2,
-                  //       height: 15,
-                  //       margin: const EdgeInsets.symmetric(horizontal: 20),
-                  //       color: Colorsys.lightGrey,
-                  //     ),
-                  //     makeFollowWidgets(count: 190, name: "Following"),
-                  //   ],
-                  // ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  makeActionButtons(),
                   const SizedBox(
                     height: 20,
                   ),
-                  makeActionButtons(),
                 ],
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                      color: Colorsys.grey300,
-                    ))),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Ktext(
-                              text: "Collotion",
-                              color: Colorsys.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
-                            Container(
-                              width: 50,
-                              padding: const EdgeInsets.only(bottom: 10),
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                      bottom: BorderSide(
-                                          color: Kcolor.main2, width: 3))),
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Ktext(
-                          text: "Likes",
-                          color: Colorsys.grey,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15,
-                        )
-                      ],
+                children: [
+                  ListTile(
+                    onTap: () {},
+                    title: Ktext(
+                        text: "Account Setting", color: Colors.grey.shade600),
+                    leading: Icon(
+                      Icons.person_pin_outlined,
+                      color: Colors.grey.shade600,
+                    ),
+                    trailing: const Icon(Icons.keyboard_arrow_right_outlined),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 35),
+                    child: Divider(),
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    title: Ktext(
+                        text: "Change Password", color: Colors.grey.shade600),
+                    leading: Icon(
+                      Icons.lock_open_outlined,
+                      color: Colors.grey.shade600,
+                    ),
+                    trailing: const Icon(Icons.keyboard_arrow_right_outlined),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 35),
+                    child: Divider(),
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    title: Ktext(text: "Language", color: Colors.grey.shade600),
+                    leading: Icon(
+                      Icons.language,
+                      color: Colors.grey.shade600,
+                    ),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right_outlined,
+                      color: Colors.grey.shade600,
                     ),
                   ),
-                  // makeColloction(widget.user!.collocation)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 35),
+                    child: Divider(),
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    title: Ktext(text: "Help", color: Colors.grey.shade600),
+                    leading: Icon(
+                      Icons.help_outline,
+                      color: Colors.grey.shade600,
+                    ),
+                    trailing: const Icon(Icons.keyboard_arrow_right_outlined),
+                  ),
                 ],
               ),
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget makeColloction(List collocation) {
-    return Column(
-      children: <Widget>[
-        Container(
-          padding: const EdgeInsets.only(top: 20),
-          height: 320,
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: collocation.length,
-            itemBuilder: (context, index) {
-              return AspectRatio(
-                aspectRatio: 1.2 / 1,
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                          margin: const EdgeInsets.only(right: 20),
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage(collocation[index].thumbnail),
-                                  fit: BoxFit.cover),
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.orange),
-                          child: Stack(
-                              alignment: AlignmentDirectional.bottomCenter,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: BackdropFilter(
-                                    filter: ImageFilter.blur(
-                                        sigmaX: 10, sigmaY: 10),
-                                    child: Container(
-                                        height: 90,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 20),
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(24),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Ktext(
-                                              text: collocation[index].name,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 15,
-                                            ),
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Ktext(
-                                              text:
-                                                  "${collocation[index].tags.length} photos",
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w300,
-                                            )
-                                          ],
-                                        )),
-                                  ),
-                                ),
-                              ])),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      height: 32,
-                      margin: const EdgeInsets.only(right: 20),
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: collocation[index].tags.length,
-                        itemBuilder: (context, tagIndex) => Container(
-                          margin: const EdgeInsets.only(right: 10),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 25, vertical: 5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colorsys.grey300),
-                          child: Center(
-                            child: Ktext(
-                              text: collocation[index].tags[tagIndex],
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget makeFollowWidgets({count, name}) {
-    return Row(
-      children: <Widget>[
-        Ktext(
-          text: count.toString(),
-          fontSize: 15,
-          fontWeight: FontWeight.bold,
-          color: Colorsys.black,
-        ),
-        const SizedBox(
-          width: 5,
-        ),
-        Ktext(text: name, fontSize: 15, color: Colorsys.darkGray),
-      ],
     );
   }
 
@@ -344,22 +224,6 @@ class ProfilePageView extends GetView<ProfilePageController> {
                     color: Colors.white,
                   )),
             ),
-            // Expanded(
-            //   child: MaterialButton(
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(5.0),
-            //     ),
-            //     height: double.infinity,
-            //     elevation: 0,
-            //     onPressed: () {
-            //     },
-            //     color: Colors.transparent,
-            //     child: Text("Message", style: TextStyle(
-            //       color: Kcolor.black,
-            //       fontWeight: FontWeight.w400
-            //     ),)
-            //   ),
-            // )
           ],
         ),
       ),
@@ -367,7 +231,7 @@ class ProfilePageView extends GetView<ProfilePageController> {
   }
 }
 
-KDrawer(
+Widget KDrawer(
   ProfilePageController controller,
   BuildContext context,
 ) {
@@ -415,7 +279,7 @@ KDrawer(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Card(
             child: ListTile(
-              title: Ktext(text: "Account Setting"),
+              title: Ktext(text: "Account Setting",    color: Colors.grey.shade600),
               leading: CircleAvatar(
                 backgroundColor: Kcolor.main,
                 child: Icon(
@@ -432,7 +296,7 @@ KDrawer(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Card(
             child: ListTile(
-              title: Ktext(text: "My Order"),
+              title: Ktext(text: "My Order",    color: Colors.grey.shade600),
               leading: CircleAvatar(
                 backgroundColor: Kcolor.main,
                 child: Icon(
@@ -449,7 +313,7 @@ KDrawer(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Card(
             child: ExpansionTile(
-              title: Ktext(text: "Appearance"),
+              title: Ktext(text: "Appearance",    color: Colors.grey.shade600),
               leading: CircleAvatar(
                 backgroundColor: Kcolor.main,
                 child: Icon(
@@ -492,7 +356,7 @@ KDrawer(
                           const SizedBox(
                             height: 5,
                           ),
-                          Ktext(text: "Light"),
+                          Ktext(text: "Light",    color: Colors.grey.shade600),
                         ],
                       ),
                       Column(
@@ -523,7 +387,7 @@ KDrawer(
                           const SizedBox(
                             height: 5,
                           ),
-                          Ktext(text: "Dark"),
+                          Ktext(text: "Dark",    color: Colors.grey.shade600),
                         ],
                       ),
                       Column(
@@ -548,7 +412,7 @@ KDrawer(
                           const SizedBox(
                             height: 5,
                           ),
-                          Ktext(text: "System"),
+                          Ktext(text: "System",    color: Colors.grey.shade600),
                         ],
                       ),
                     ],
@@ -562,7 +426,7 @@ KDrawer(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Card(
             child: ListTile(
-              title: Ktext(text: "Chat with Us"),
+              title: Ktext(text: "Chat with Us",    color: Colors.grey.shade600),
               // subtitle: Text("Feel Free to Contact Us"),
               leading: CircleAvatar(
                 backgroundColor: Kcolor.main,
@@ -581,7 +445,7 @@ KDrawer(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Card(
             child: ListTile(
-              title: Ktext(text: "Help Center"),
+              title: Ktext(text: "Help Center",    color: Colors.grey.shade600),
               leading: CircleAvatar(
                 backgroundColor: Kcolor.main,
                 child: Icon(
@@ -608,6 +472,7 @@ KDrawer(
           child: ListTile(
             title: Ktext(
               text: "Log Out",
+               color: Colors.grey.shade600
             ),
             leading: CircleAvatar(
               backgroundColor: Kcolor.main,

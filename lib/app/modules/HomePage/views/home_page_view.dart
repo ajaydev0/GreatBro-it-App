@@ -1,4 +1,6 @@
 // ignore_for_file: unused_local_variable
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greatbro_it/app/const/colors.dart';
@@ -11,7 +13,8 @@ class HomePageView extends GetView<HomePageController> {
   const HomePageView({super.key});
   @override
   Widget build(BuildContext context) {
-    Get.put(HomePageController());
+    var user = FirebaseAuth.instance.currentUser;
+    var controller = Get.put(HomePageController());
     return Scaffold(
       backgroundColor: Kcolor.white,
       appBar: AppBar(
@@ -21,23 +24,25 @@ class HomePageView extends GetView<HomePageController> {
           child: Material(
             borderRadius: BorderRadius.circular(50),
             elevation: 3,
-            child: Container(
-              alignment: Alignment.center,
-              height: 38,
-              width: 38,
-              decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    image: AssetImage("assets/admin.jpg"),
-                    fit: BoxFit.cover,
+            child: 
+            
+             Container(
+                    alignment: Alignment.center,
+                    height: 38,
+                    width: 38,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(user?.photoURL ?? ""),
+                          fit: BoxFit.cover,
+                        ),
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(50)),
                   ),
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(50)),
-            ),
           ),
         ),
         title: Ktext(
-          text: "Hi, Ajay",
-          fontSize: 15,
+          text: "Hi, ${user!.displayName ?? "Null Name"}",
+          fontSize: 13,
         ),
         actions: [
           Padding(
@@ -149,6 +154,8 @@ class HomePageView extends GetView<HomePageController> {
               //   "Find your next trip",
               //   style: TextStyle(fontSize: 13),
               // ),
+
+              
               Padding(
                 padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
                 child: Ktext(

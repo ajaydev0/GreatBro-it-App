@@ -293,9 +293,10 @@ class LoginPageView extends GetView<LoginPageController> {
                             ),
                             const SizedBox(width: 15),
                             loginBoxes(
-                              imgUrl: "assets/icons/facebook2.png",
+                              imgUrl: "assets/icons/facebook.png",
                               onTap: () {
                                 print("Facebook");
+                                controller.facebookSignIn();
                               },
                             ),
                             const SizedBox(width: 15),
@@ -303,6 +304,7 @@ class LoginPageView extends GetView<LoginPageController> {
                               imgUrl: "assets/icons/github.png",
                               onTap: () {
                                 print("Github");
+                                controller.githubSignIn();
                               },
                             ),
                           ],
